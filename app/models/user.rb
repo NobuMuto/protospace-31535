@@ -11,7 +11,7 @@ class User < ApplicationRecord
     validates :position
   end
 
+  #has_many :comments
+  #has_many :prototypes, through: comments
   has_many :prototypes
-  has_many :prototypes
-
 end
