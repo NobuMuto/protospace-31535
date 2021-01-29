@@ -1,7 +1,8 @@
 class PrototypesController < ApplicationController
 
   before_action :move_to_index, except: [:index, :show]
-
+  before_action :ensure_correct_user,
+  {only: [:edit, :update]}
 
   def index
     @prototype = Prototype.all
@@ -23,6 +24,8 @@ class PrototypesController < ApplicationController
 
   def show
     @prototype = Prototype.find(params[:id])
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
   end
 
   def edit
@@ -49,6 +52,17 @@ class PrototypesController < ApplicationController
       redirect_to action: :index
     end
   end
+
+  def ensure_correct_user
+
+    if @current_user =  params[:id]
+  
+     redirect_to root_path
+  
+    end
+  
+  end
+
 
   private
   def prototype_params
