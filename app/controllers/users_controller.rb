@@ -7,5 +7,5 @@ class UsersController < ApplicationController
     @occupation = current_user.occupation
     @position = current_user.position
   end
-
+  
 end
